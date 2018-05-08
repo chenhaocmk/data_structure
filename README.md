@@ -1,2 +1,4 @@
-# data_structure
-Implementing and testing data structures
+# Data Structure
+- Implementing and testing data structures
+
+Let's roll.
