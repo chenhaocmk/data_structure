@@ -56,7 +56,7 @@ class MinHeap(object):
         if self._valid_index(index):
             return (index-1)//2
         else:
-            raise None
+            return None
 
     def _heapfy(self, index):
         l, r = self._left_child(index), self._right_child(index)
