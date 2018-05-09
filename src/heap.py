@@ -43,14 +43,14 @@ class MinHeap(object):
             left = (index << 1) + 1
             return left if self._valid_index(left) else None
         else:
-            raise None
+            return None
 
     def _right_child(self, index):
         if self._valid_index(index):
             right = (index << 1) + 2
             return right if self._valid_index(right) else None
         else:
-            raise None
+            return None
 
     def _parent(self, index):
         if self._valid_index(index):

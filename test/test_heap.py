@@ -1,6 +1,7 @@
 import random
 
 from src.heap import MinHeap
+from util import visualizer as vis
 
 h = MinHeap()
 my_list = list(range(1, 20))
@@ -18,5 +19,6 @@ for i in my_list:
 
 h.modify(10, -2)
 h.modify(9, -1)
-for i in h:
-    print(i)
+
+func = lambda x: [y for y in (h._left_child(x), h._right_child(x)) if y]
+vis.print_tree(0, func, h.__getattr__)
