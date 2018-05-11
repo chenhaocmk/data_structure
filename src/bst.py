@@ -21,11 +21,12 @@ class BinarySearchTree(object):
         for node in tmp:
             if node.val == val:
                 return node
+            elif node.val < val and node.right:
+                tmp.append(node.right)
+            elif node.val > val and node.left:
+                tmp.append(node.left)
             else:
-                if node.left:
-                    tmp.append(node.left)
-                if node.right:
-                    tmp.append(node.right)
+                return False
         return False
 
     def add(self, val):
