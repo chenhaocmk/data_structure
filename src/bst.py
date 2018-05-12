@@ -26,12 +26,13 @@ class BinarySearchTree(object):
             elif node.val > val and node.left:
                 tmp.append(node.left)
             else:
-                return False
-        return False
+                break
+        return None
 
     def add(self, val):
         if self.get(val):
-            raise ValueError('Value already exist in BST: %s' % val)
+            raise ValueError('Value already exist in {name}: {val}'.
+                             format(name=self.__class__.__name__, val=val))
         else:
             if not self.root:
                 self.root = TreeNode(val)
