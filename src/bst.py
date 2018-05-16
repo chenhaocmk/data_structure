@@ -59,7 +59,8 @@ class BinarySearchTree(object):
 
     def delete(self, val):
         if not self.get(val):
-            raise ValueError('Value not found in BST: %s' % val)
+            raise ValueError('Value not found in {name}: {val}'.format(
+                name=self.__class__.__name__, val=val))
         else:
             self.length -= 1
             return self._delete_helper(self.root, val)

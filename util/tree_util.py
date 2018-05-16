@@ -1,5 +1,14 @@
 
 
+def sibling(node):
+    if not node:
+        raise ValueError('Unable to get sibling for None node')
+    elif not node.parent:
+        raise ValueError('Unable to get sibling for node with no parent')
+    else:
+        return node.parent.right if node.parent.left == node else node.left
+
+
 def grandparent(node):
     return node.parent.parent if node and node.parent else None
 
