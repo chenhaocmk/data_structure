@@ -7,8 +7,8 @@ class UnionFindCollection(object):
 
     def all_sets(self):
         res = collections.defaultdict(set)
-        for key, val in self.elements.items():
-            res[val].add(key)
+        for item in self.elements:
+            res[self.get_ancestor(item)].add(item)
         return res
 
     def __str__(self):
@@ -35,7 +35,7 @@ class UnionFindCollection(object):
     def _union(self, a, b):
         res_a, res_b = self.get_ancestor(a), self.get_ancestor(b)
         if res_a != res_b:
-            self.elements[a] = res_b
+            self.elements[res_a] = res_b
 
     def get_ancestor(self, x):
         assert x in self.elements, 'Element should be in collections already: %s' % x
