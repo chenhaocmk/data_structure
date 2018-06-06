@@ -3,11 +3,11 @@ from src.union_find_set import UnionFindCollection
 my_union_find_set = UnionFindCollection()
 
 for i in range(1, 21):
-    my_union_find_set.add_relation(i)
+    my_union_find_set.add(i)
 print(my_union_find_set)
 
 for i in range(1, 21)[::2]:
-    my_union_find_set.add_relation(i, i+1)
+    my_union_find_set.union(i, i+1)
     print(my_union_find_set)
 
 for i in range(1, 21):

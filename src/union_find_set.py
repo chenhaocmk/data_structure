@@ -4,6 +4,7 @@ import collections
 class UnionFindCollection(object):
     def __init__(self):
         self.elements = dict()
+        self.depth = dict()
 
     def all_sets(self):
         res = collections.defaultdict(set)
@@ -20,22 +21,25 @@ class UnionFindCollection(object):
     def __contains__(self, item):
         return item in self.elements
 
-    def add_relation(self, a, b=None):
-        if a is None:
-            print('Nothing been done when trying to add None to collection')
-            return
-        elif b is None:
-            if a in self.elements:
-                print('Nothing been done when trying to add existed single element to collection')
-            else:
-                self.elements[a] = a
-        else:
-            self._union(a, b)
+    def add(self, x):
+        assert x not in self.elements, 'Element already exists: %s' % str(x)
+        self.elements[x] = x
+        self.depth[x] = 1
 
-    def _union(self, a, b):
+    def union(self, a, b):
+        if a not in self.elements:
+            self.add(a)
+        if b not in self.elements:
+            self.add(b)
+
         res_a, res_b = self.get_ancestor(a), self.get_ancestor(b)
         if res_a != res_b:
-            self.elements[res_a] = res_b
+            if self.depth[res_a] > self.depth[res_b]:
+                self.elements[res_b] = res_a
+                self.depth[res_a] += self.depth[res_b]
+            else:
+                self.elements[res_a] = res_b
+                self.depth[res_b] += self.depth[res_a]
 
     def get_ancestor(self, x):
         assert x in self.elements, 'Element should be in collections already: %s' % x
